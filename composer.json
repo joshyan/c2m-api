@@ -1,0 +1,26 @@
+{
+    "name": "joshyan/c2mAPIRest",
+    "type": "library",
+    "description": "click2mail rest api with composer",
+    "keywords": [
+        "click2mail",
+        "php"
+    ],
+    "homepage": "https://rest.click2mail.com/",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Josh Yan",
+            "email": "joshyanworks@gmail.com"
+        }
+    ],
+    "autoload": {
+        "classmap": [
+            "c2mAPIRest.php"
+        ]
+    },
+    "require": {
+        "ext-curl": "*",
+        "php": ">=5.6.0"
+    }
+}
