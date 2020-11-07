@@ -140,7 +140,7 @@ class c2mAPIRest
 	{
 	$docName = "PHP SDK ".substr( md5(rand()), 0, 7);
 	$format =  strtoupper(pathinfo($file, PATHINFO_EXTENSION));
-	$ar = array('documentName' => $docName, "documentClass" => $documentClass, "documentFormat" => $format, "file" => new CURLFile($file));
+	$ar = array('documentName' => $docName, "documentClass" => $documentClass, "documentFormat" => $format, "file" => new \CURLFile($file));
 	$xmlDoc = $this->rest_Call($this->get_restUrl() . "/molpro/documents/",$ar,"POST");
 	$this->documentId =  (string) $xmlDoc->id;
 	}
@@ -395,7 +395,7 @@ class c2mAPIRest
 	}
 	function json2xml($json) {
     $a = json_decode($json);
-    $d = new DOMDocument();
+    $d = new \DOMDocument();
     $c = $d->createElement("root");
     $d->appendChild($c);
     $t = function($v) {
