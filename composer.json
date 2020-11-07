@@ -15,8 +15,8 @@
         }
     ],
     "autoload": {
-        "classmap": [
-            "c2mAPIRest.php"
+        "psr-4": [
+            "C2M\\": "src/"
         ]
     },
     "require": {
