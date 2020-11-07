@@ -1,4 +1,6 @@
 <?PHP
+namespace C2M;
+
 class c2mAPIRest
 {
 	function c2mAPIRest($un,$pw,$live)
