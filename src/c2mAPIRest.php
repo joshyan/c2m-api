@@ -3,7 +3,7 @@ namespace C2M;
 
 class c2mAPIRest
 {
-	function c2mAPIRest($un,$pw,$live)
+	public function __construct($un,$pw,$live)
 	{
 		$this->username = $un;
 		$this->password = $pw;
