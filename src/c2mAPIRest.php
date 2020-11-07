@@ -136,9 +136,9 @@ class c2mAPIRest
 		curl_close($ch);
 		return $response;
 	}
-	public function document_create($file,$documentClass)
+	public function document_create($file,$documentClass,$name = "Document ".substr( md5(rand()), 0, 7))
 	{
-	$docName = "PHP SDK ".substr( md5(rand()), 0, 7);
+	$docName = $name;
 	$format =  strtoupper(pathinfo($file, PATHINFO_EXTENSION));
 	$ar = array('documentName' => $docName, "documentClass" => $documentClass, "documentFormat" => $format, "file" => new \CURLFile($file));
 	$xmlDoc = $this->rest_Call($this->get_restUrl() . "/molpro/documents/",$ar,"POST");
@@ -197,6 +197,20 @@ class c2mAPIRest
 		$output =$this->rest_Call2($this->get_restUrl(). "/molpro/jobs/".$this->jobId."/submit/",$ar,"POST");
 		return $output;
 	}
+	
+	public function runAllWithDocumentId($documentClass,$layout,$productionTime,$envelope,$color,$paperType,$printOption,$documentId,$xml)
+	{
+	$this->documentId =  (string) $documentId;
+	echo "AddressList Uploading\n\n";
+	$this->addressList_create($xml);
+	echo "Job Create\n\n";
+	$this->job_create($documentClass,$layout,$productionTime,$envelope,$color,$paperType,$printOption);
+	echo "Job Submit\n\n";	
+	$this->job_Submit();
+	$output  = $this->job_checkStatus();
+	return $output;
+	}
+
 	public function runAll($documentClass,$layout,$productionTime,$envelope,$color,$paperType,$printOption,$file,$xml)
 	{
 	echo "Document Uploading\n\n";
@@ -233,9 +247,9 @@ class c2mAPIRest
 		$this->documentIdI= 0;
 	}
 	
-	public function createAddressList(){
+	public function createAddressList($name = "Address List ".substr( md5(rand()), 0, 7)){
 		$this -> addressListxml = new \SimpleXMLElement('<addressList/>');
-		$this -> addressListxml -> addChild('addressListName',"PHP SDK".substr( md5(rand()), 0, 7));
+		$this -> addressListxml -> addChild('addressListName',$name);
 		$this -> addressListxml -> addChild('addressMappingId', '2');
 		$addressesXml = $this -> addressListxml -> addChild('addresses');
 		
@@ -248,9 +262,9 @@ class c2mAPIRest
 		}	
 		return $this->addressListxml->asXML();
 	}
-	public function createCustomAddressList($addressListArray,$addressMappingId){
+	public function createCustomAddressList($addressListArray,$addressMappingId,$name = "Address List ".substr( md5(rand()), 0, 7)){
 		$this -> addressListxml = new \SimpleXMLElement('<addressList/>');
-		$this -> addressListxml -> addChild('addressListName',"PHP SDK".substr( md5(rand()), 0, 7));
+		$this -> addressListxml -> addChild('addressListName',$name);
 		$this -> addressListxml -> addChild('addressMappingId', $addressMappingId);
 		$addressesXml = $this -> addressListxml -> addChild('addresses');
 		foreach ($addressListArray as $aa) {
