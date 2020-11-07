@@ -15,9 +15,9 @@
         }
     ],
     "autoload": {
-        "psr-4": [
+        "psr-4": {
             "C2M\\": "src/"
-        ]
+        }
     },
     "require": {
         "ext-curl": "*",
