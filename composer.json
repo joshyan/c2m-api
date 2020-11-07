@@ -1,7 +1,7 @@
 {
-    "name": "joshyan/c2m-api-rest",
+    "name": "joshyan/c2m-api",
     "type": "library",
-    "description": "click2mail rest api with composer",
+    "description": "click2mail api with composer",
     "keywords": [
         "click2mail",
         "php"
