@@ -3,7 +3,19 @@ namespace C2M;
 
 class c2mAPIRest
 {
-	public function __construct($un,$pw,$live)
+	public $LRestmainurl = "https://rest.click2mail.com";
+	public $sRestmainurl = "https://stage-rest.click2mail.com";
+
+	public $username = "";
+	public $password = "";
+	public $addresses;
+	public $mode= 0;
+	public $documentId = 0;
+	public $addressListId = 0;
+	public $addressListStatus = 0;
+	public $jobId = 0;
+		
+	function __construct($un,$pw,$live)
 	{
 		$this->username = $un;
 		$this->password = $pw;
@@ -18,18 +30,6 @@ class c2mAPIRest
 		}
 	}
 	
-	public $LRestmainurl = "https://rest.click2mail.com";
-	public $sRestmainurl = "https://stage-rest.click2mail.com";
-
-	public $username = "";
-	public $password = "";
-	public $addresses;
-	public $mode= 0;
-	public $documentId = 0;
-	public $addressListId = 0;
-	public $addressListStatus = 0;
-	public $jobId = 0;
-		
     function mime_content_type($filename) {
 
         $mime_types = array(
