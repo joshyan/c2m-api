@@ -234,7 +234,7 @@ class c2mAPIRest
 	}
 	
 	public function createAddressList(){
-		$this -> addressListxml = new SimpleXMLElement('<addressList/>');
+		$this -> addressListxml = new \SimpleXMLElement('<addressList/>');
 		$this -> addressListxml -> addChild('addressListName',"PHP SDK".substr( md5(rand()), 0, 7));
 		$this -> addressListxml -> addChild('addressMappingId', '2');
 		$addressesXml = $this -> addressListxml -> addChild('addresses');
@@ -249,7 +249,7 @@ class c2mAPIRest
 		return $this->addressListxml->asXML();
 	}
 	public function createCustomAddressList($addressListArray,$addressMappingId){
-		$this -> addressListxml = new SimpleXMLElement('<addressList/>');
+		$this -> addressListxml = new \SimpleXMLElement('<addressList/>');
 		$this -> addressListxml -> addChild('addressListName',"PHP SDK".substr( md5(rand()), 0, 7));
 		$this -> addressListxml -> addChild('addressMappingId', $addressMappingId);
 		$addressesXml = $this -> addressListxml -> addChild('addresses');
