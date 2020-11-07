@@ -136,9 +136,9 @@ class c2mAPIRest
 		curl_close($ch);
 		return $response;
 	}
-	public function document_create($file,$documentClass,$name = "Document ".substr( md5(rand()), 0, 7))
+	public function document_create($file,$documentClass,$name)
 	{
-	$docName = $name;
+	$docName = $name ? $name : "Document ".substr( md5(rand()), 0, 7);
 	$format =  strtoupper(pathinfo($file, PATHINFO_EXTENSION));
 	$ar = array('documentName' => $docName, "documentClass" => $documentClass, "documentFormat" => $format, "file" => new \CURLFile($file));
 	$xmlDoc = $this->rest_Call($this->get_restUrl() . "/molpro/documents/",$ar,"POST");
@@ -247,9 +247,10 @@ class c2mAPIRest
 		$this->documentIdI= 0;
 	}
 	
-	public function createAddressList($name = "Address List ".substr( md5(rand()), 0, 7)){
+	public function createAddressList($name){
+		$listName = $name ? $name : "Address List ".substr( md5(rand()), 0, 7);
 		$this -> addressListxml = new \SimpleXMLElement('<addressList/>');
-		$this -> addressListxml -> addChild('addressListName',$name);
+		$this -> addressListxml -> addChild('addressListName',$listName);
 		$this -> addressListxml -> addChild('addressMappingId', '2');
 		$addressesXml = $this -> addressListxml -> addChild('addresses');
 		
@@ -262,9 +263,10 @@ class c2mAPIRest
 		}	
 		return $this->addressListxml->asXML();
 	}
-	public function createCustomAddressList($addressListArray,$addressMappingId,$name = "Address List ".substr( md5(rand()), 0, 7)){
+	public function createCustomAddressList($addressListArray,$addressMappingId,$name){
+		$listName = $name ? $name : "Address List ".substr( md5(rand()), 0, 7);
 		$this -> addressListxml = new \SimpleXMLElement('<addressList/>');
-		$this -> addressListxml -> addChild('addressListName',$name);
+		$this -> addressListxml -> addChild('addressListName',$listName);
 		$this -> addressListxml -> addChild('addressMappingId', $addressMappingId);
 		$addressesXml = $this -> addressListxml -> addChild('addresses');
 		foreach ($addressListArray as $aa) {
