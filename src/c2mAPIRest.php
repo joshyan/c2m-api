@@ -171,7 +171,7 @@ class c2mAPIRest
 		return $xmlDoc;
 	
 	}
-	public function job_create($documentClass,$layout,$productionTime,$envelope,$color,$paperType,$printOption)
+	public function job_create($documentClass,$layout,$productionTime,$envelope,$color,$paperType,$printOption,$mailClass)
 	{
 					$ar = array(
 		 "documentClass" =>  $documentClass
@@ -181,6 +181,7 @@ class c2mAPIRest
 		,"color"=> $color
 		,"paperType"=> $paperType
 		,"printOption"=> $printOption
+		,"mailClass"=> $mailClass
 		,"documentId"=>$this->documentId
 		,"addressId"=>$this->addressListId
 		);
@@ -198,27 +199,27 @@ class c2mAPIRest
 		return $output;
 	}
 	
-	public function runAllWithDocumentId($documentClass,$layout,$productionTime,$envelope,$color,$paperType,$printOption,$documentId,$xml)
+	public function runAllWithDocumentId($documentClass,$layout,$productionTime,$envelope,$color,$paperType,$printOption,$mailClass,$documentId,$xml)
 	{
 	$this->documentId =  (string) $documentId;
 	echo "AddressList Uploading\n\n";
 	$this->addressList_create($xml);
 	echo "Job Create\n\n";
-	$this->job_create($documentClass,$layout,$productionTime,$envelope,$color,$paperType,$printOption);
+	$this->job_create($documentClass,$layout,$productionTime,$envelope,$color,$paperType,$printOption,$mailClass);
 	echo "Job Submit\n\n";	
 	$this->job_Submit();
 	$output  = $this->job_checkStatus();
 	return $output;
 	}
 
-	public function runAll($documentClass,$layout,$productionTime,$envelope,$color,$paperType,$printOption,$file,$xml)
+	public function runAll($documentClass,$layout,$productionTime,$envelope,$color,$paperType,$printOption,$mailClass,$file,$xml)
 	{
 	echo "Document Uploading\n\n";
 	$this->document_create($file,$documentClass);	
 	echo "AddressList Uploading\n\n";
 	$this->addressList_create($xml);
 	echo "Job Create\n\n";
-	$this->job_create($documentClass,$layout,$productionTime,$envelope,$color,$paperType,$printOption);
+	$this->job_create($documentClass,$layout,$productionTime,$envelope,$color,$paperType,$printOption,$mailClass);
 	echo "Job Submit\n\n";	
 	$this->job_Submit();
 	$output  = $this->job_checkStatus();
