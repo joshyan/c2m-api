@@ -135,8 +135,8 @@ class c2mAPIRest
 		,"paperType"=> $paperType
 		,"printOption"=> $printOption
 		,"mailClass"=> $mailClass
-		,"quantity"=>$quantity,
-		,"nonStandardQuantity"=>0,
+		,"quantity"=>$quantity
+		,"nonStandardQuantity"=>0
 		,"internationalQuantity"=>0
 		);
 
