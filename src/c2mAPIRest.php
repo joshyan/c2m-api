@@ -126,22 +126,8 @@ class c2mAPIRest
 
 	public function get_estimateCost($documentClass,$layout,$productionTime,$envelope,$color,$paperType,$printOption,$mailClass,$quantity)
 	{
-					$ar = array(
-		 "documentClass" =>  $documentClass
-		,"layout" => $layout
-		,"productionTime"=> $productionTime
-		,"envelope"=> $envelope
-		,"color"=> $color
-		,"paperType"=> $paperType
-		,"printOption"=> $printOption
-		,"mailClass"=> $mailClass
-		,"quantity"=>$quantity
-		,"nonStandardQuantity"=>0
-		,"internationalQuantity"=>0
-		,"numberOfPages"=>1
-		);
-
-		$output =$this->rest_Call2($this->get_restUrl(). "/molpro/costEstimate", $ar,"GET");
+		$ar = array();
+		$output =$this->rest_Call2($this->get_restUrl(). "/molpro/costEstimate?documentClass=".$documentClass."&layout=".$layout."&productionTime=".$productionTime."&envelope=".$envelope."&color=".$color."&paperType=".$paperType."&printOption=".$printOption."&mailClass=".$mailClass."&quantity=".$quantity."&nonStandardQuantity=0&internationalQuantity=0&numberOfPages=1", $ar,"GET");
 		return $output;
 	}
 
