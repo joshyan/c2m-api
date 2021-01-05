@@ -138,10 +138,11 @@ class c2mAPIRest
 		,"quantity"=>$quantity
 		,"nonStandardQuantity"=>0
 		,"internationalQuantity"=>0
+		,"numberOfPages"=>1
 		);
 
 		$output =$this->rest_Call2($this->get_restUrl(). "/molpro/costEstimate", $ar,"GET");
-		return $output;
+		return (float) $output->standardCost->subtotal;
 	}
 
 	public function addressList_GetStatus()
