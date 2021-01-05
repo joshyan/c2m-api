@@ -142,7 +142,7 @@ class c2mAPIRest
 		);
 
 		$output =$this->rest_Call2($this->get_restUrl(). "/molpro/costEstimate", $ar,"GET");
-		return (float) $output->standardCost->subtotal;
+		return $output;
 	}
 
 	public function addressList_GetStatus()
