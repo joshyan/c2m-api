@@ -109,6 +109,21 @@ class c2mAPIRest
 		$output =$this->rest_Call2($this->get_restUrl() . "/molpro/jobs/".$this->jobId,$ar,"GET");
 		return $output;
 	}
+
+	public function job_getCost()
+	{
+		$ar = array();
+		$output =$this->rest_Call2($this->get_restUrl() . "/molpro/jobs/".$this->jobId."/cost",$ar,"GET");
+		return $output;
+	}
+
+	public function job_creditBalance()
+	{
+		$ar = array();
+		$output =$this->rest_Call2($this->get_restUrl() . "/molpro/credit",$ar,"GET");
+		return $output;
+	}
+
 	public function addressList_GetStatus()
 	{  
 		
