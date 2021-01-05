@@ -117,11 +117,32 @@ class c2mAPIRest
 		return $output;
 	}
 
-	public function job_creditBalance()
+	public function get_creditBalance()
 	{
 		$ar = array();
 		$output =$this->rest_Call2($this->get_restUrl() . "/molpro/credit",$ar,"GET");
-		return $output;
+		return (float) $output->balance;
+	}
+
+	public function get_estimateCost($documentClass,$layout,$productionTime,$envelope,$color,$paperType,$printOption,$mailClass,$quantity)
+	{
+					$ar = array(
+		 "documentClass" =>  $documentClass
+		,"layout" => $layout
+		,"productionTime"=> $productionTime
+		,"envelope"=> $envelope
+		,"color"=> $color
+		,"paperType"=> $paperType
+		,"printOption"=> $printOption
+		,"mailClass"=> $mailClass
+		,"quantity"=>$quantity,
+		,"nonStandardQuantity"=>0,
+		,"internationalQuantity"=>0
+		);
+
+		$output =$this->rest_Call2($this->get_restUrl(). "/molpro/costEstimate", $ar,"GET");
+		$cost = (float) $output->standardCost->subtotal;
+		return $cost;
 	}
 
 	public function addressList_GetStatus()
