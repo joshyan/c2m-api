@@ -114,7 +114,7 @@ class c2mAPIRest
 	{
 		$ar = array();
 		$output =$this->rest_Call2($this->get_restUrl() . "/molpro/jobs/".$this->jobId."/cost",$ar,"GET");
-		return $output;
+		return (float) $output->cost;
 	}
 
 	public function get_creditBalance()
@@ -141,8 +141,7 @@ class c2mAPIRest
 		);
 
 		$output =$this->rest_Call2($this->get_restUrl(). "/molpro/costEstimate", $ar,"GET");
-		$cost = (float) $output->standardCost->subtotal;
-		return $cost;
+		return $output;
 	}
 
 	public function addressList_GetStatus()
